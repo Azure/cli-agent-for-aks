@@ -9,10 +9,11 @@ To install and test the feature, see Setup Instructions for Agentic CLI for AKS.
 Do not share screenshots or copy-paste the instructions in the subpage above. If you know anyone who wants to test out the CLI Agent for AKS feature, please ask them to fill out the [signup form](https://aka.ms/aks/cli-agent/signup).
 
 ## Feedback Channels:
-Weekly Community Call with AKS: 
-- The AKS product team welcomes you to join our weekly community calls for open discussion, questions, or feedback on the CLI Agent for AKS experience. We would love to hear about your experiences with the feature and what gaps or issues you have come across. Your feedback is valuable for our team to continuously improve and expand the CLI Agent experience before we officially announce it to the community!
-- The calls are scheduled weekly at 10-10:30 AM PT:
-  - Join: Meeting link (10-10:30 AM Wednesday PT)
+**Weekly Community Call with AKS**
+The AKS product team welcomes you to join our weekly community calls for open discussion, questions, or feedback on the CLI Agent for AKS experience. We would love to hear about your experiences with the feature and what gaps or issues you have come across. Your feedback is valuable for our team to continuously improve and expand the CLI Agent experience before we officially announce it to the community!
+
+The calls are scheduled weekly at 10-10:30 AM PT on Wednesdays:
+  - Join: Meeting link
   - Meeting ID: 264 936 101 957
   - Passcode: 4Jk3qz3Z
 
