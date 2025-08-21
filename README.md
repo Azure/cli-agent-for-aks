@@ -4,7 +4,7 @@ Welcome to the Limited Preview page for the CLI Agent for AKS! We appreciate you
 This page contains the instructions and guidelines for sharing feedback with the AKS team. Please see the links below for how to install, use, and share your findings on the CLI Agent for AKS experience. Please keep in mind that this is a Preview experience and you may experience some gaps/issues along the way.
 
 ## Getting Started
-To install and test the feature, see Setup Instructions for Agentic CLI for AKS.
+To install and test the feature, see [Instructions for Agentic CLI for AKS](./INSTRUCTIONS.md).
 
 Do not share screenshots or copy-paste the instructions in the subpage above. If you know anyone who wants to test out the CLI Agent for AKS feature, please ask them to fill out the [signup form](https://aka.ms/aks/cli-agent/signup).
 
