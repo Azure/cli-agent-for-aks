@@ -23,7 +23,8 @@ The calls are scheduled weekly at 10-10:30 AM PT on Wednesdays:
 
 **Asynchronous Feedback**
 
-To provide any feedback anytime, please document the commands and outputs and open an issue directly on this GitHub page.
+To provide any feedback anytime, please document the commands and outputs and open an issue directly on this GitHub page.  You can also reach out directly  aksagentcli@service.microsoft.com with any feedback or questions.
+
 
 ## Important Links
 
