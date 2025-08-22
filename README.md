@@ -23,7 +23,7 @@ The calls are scheduled weekly at 10-10:30 AM PT on Wednesdays:
 
 **Asynchronous Feedback**
 
-To provide any feedback anytime, please document the commands and outputs and fill out our [feedback form](https://aka.ms/aks/cli-agent/feedback).
+To provide any feedback anytime, please document the commands and outputs and open an issue directly on this GitHub page.
 
 ## Important Links
 
