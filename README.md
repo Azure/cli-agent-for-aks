@@ -29,6 +29,6 @@ To provide any feedback anytime, please document the commands and outputs and fi
 
 By participating in the Limited Preview for CLI Agent for AKS, you agree to the following terms:
 
-- [Transparency notice](https://microsoft.sharepoint.com/:u:/r/sites/AgentCLIforAKS/SitePages/Transparency-notice-for-Agentic-CLI-for-AKS.aspx?csf=1&web=1&share=EUUCVW-qCe9NqRxLHDm0YXABZv60v9lVwrXPx9ALXoCd5g&e=MRIKE4)
+- [Transparency notice](./TRANSPARENCY-NOTE.md)
 - [Microsoft Preview terms](https://azure.microsoft.com/en-us/support/legal/preview-supplemental-terms/)
 - [Microsoft Privacy Agreement](http://go.microsoft.com/fwlink/?LinkId=521839)
