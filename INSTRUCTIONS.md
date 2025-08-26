@@ -93,10 +93,10 @@ Update the aks-preview extension
 az extension update --name aks-preview
 ```
 
-Next,  remove the aks preview  and add the new one
+Next,  remove the aks preview  and add the new one. This can take upto 5 min
 
 ```bash
-az extension remove --name aks-preview; az extension add --name aks-preview
+az extension remove --name aks-preview; az extension add --name aks-preview --debug
 ```
 
 ```bash
