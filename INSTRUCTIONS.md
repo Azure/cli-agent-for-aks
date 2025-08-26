@@ -204,14 +204,9 @@ If you run into any issues using the CLI Agent for AKS, verify the following:
 - Confirm cluster connectivity using: kubectl cluster-info
 - If you see the requests retrying to /chat/completions in the responses, you are throttled by the token per minute(TPM) limits from the LLM. Increase the TPM limit or apply for more quota [here](https://learn.microsoft.com/en-us/azure/ai-foundry/openai/quotas-limits?tabs=REST#request-quota-increases).
 - If outputs vary, it may be due to LLM response variability or intermittent MCP server connections.
+- The Azure specific variables cannot be passed as parameters to the command, they explicitly need to be set as environment variables i.e  AZURE_API_BASE ,AZURE_API_VERSION
+  AZURE_API_KEY. The model can be used as a parameter.
 
 ### Errors
 
-```bash
-Error: litellm.BadRequestError: AzureException BadRequestError - Unsupported value: 'temperature' does not support 1E-8 with this model. Only the default (1) value is supported. User: User: litellm.exceptions.BadRequestError: litellm.BadRequestError: AzureException BadRequestError - Unsupported value: 'temperature' does not support 1E-8 with this model. Only the default (1) value is supported. Error: litellm.BadRequestError: AzureException BadRequestError - Unsupported value: 'temperature' does not support 1E-8 with this model. Only the default (1) value i s supported./
-```
-**Fix**: Set an environment variable for TEMPERATURE to 1:
 
-```bash
-export TEMPERATURE=1
-```
