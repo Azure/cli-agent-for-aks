@@ -99,6 +99,15 @@ Next,  remove the aks preview  and add the new one
 az extension remove --name aks-preview; az extension add --name aks-preview
 ```
 
+```bash
+az version
+
+"extensions": {
+    "aks-preview": "18.0.0b28"
+  }
+}
+```
+
 #### Step 3 – Verify Installation
 After installation, verify that the CLI Agent was successfully installed by running:
 
