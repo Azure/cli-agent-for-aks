@@ -87,16 +87,16 @@ Expected output should include: "azure-cli": "2.76.0" or higher
 
 #### Step 2 – Install the AKS Preview Extension
 
-If you have previously installed the aks-preview extension, remove it by running:
+Update the aks-preview extension
 
 ```bash
-az extension remove --name aks-preview
+az extension update --name aks-preview
 ```
 
-Next, install the Limited Preview AKS extension - this step might take 5-10 minutes to complete:
+Next,  remove the aks preview  and add the new one
 
 ```bash
-az extension add --source https://aksagentbugbash.blob.core.windows.net/extension/aks_preview-18.0.0b27-py2.py3-none-any.whl --yes --debug
+az extension remove --name aks-preview; az extension add --name aks-preview
 ```
 
 #### Step 3 – Verify Installation
