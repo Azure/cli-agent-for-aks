@@ -94,26 +94,20 @@ az version
 
 Expected output should include: "azure-cli": "2.76.0" or higher
 
-#### Step 2 – Install the AKS Preview Extension
-
-Update the aks-preview extension
-
-```bash
-az extension update --name aks-preview
-```
-
-Next,  remove the aks preview  and add the new one. This can take upto 5 min
+#### Step 2 – Install the AKS-Agent Extension
+Add the aks-agent extension. This can take between **5-10** min
 
 ```bash
-az extension remove --name aks-preview; az extension add --name aks-preview --debug
+ az extension add --name aks-agent --debug
 ```
+
+Verify the installation of the aks-agent extension through the az version command
 
 ```bash
 az version
 
 "extensions": {
-    "aks-preview": "18.0.0b28"
-  }
+    "aks-agent": "1.0.0b1",
 }
 ```
 
