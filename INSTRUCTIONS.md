@@ -34,12 +34,21 @@ While you can use any model, we highly recommend you to use the newer models suc
 
 1. Set up an Azure Open AI resource by following the [Microsoft documentation](https://learn.microsoft.com/azure/ai-foundry/openai/how-to/create-resource?pivots=web-portal).
 2. [Deploy the model](https://learn.microsoft.com/azure/ai-foundry/openai/how-to/create-resource?pivots=web-portal#deploy-a-model) you plan to use in the Azure AI Foundry Portal.
-3. Once deployed, note your API base URL, API version, and API key, then set them as environment variables:
- 
+3. Once deployed, note your API base URL and API key, then set them as environment variables:
+<img width="1713" height="817" alt="image" src="https://github.com/user-attachments/assets/400021fd-5604-4cd2-9faf-407145c52669" />
+
+Linux/Mac:
 ```bash
 export AZURE_API_BASE="https://<your-endpoint>.openai.azure.com/"
 export AZURE_API_VERSION="2025-04-01-preview"
 export AZURE_API_KEY="<your-api-key>"
+```
+
+Windows:
+```bash
+$env:AZURE_API_VERSION="2025-04-01-preview"
+$env:AZURE_API_BASE="https://<your-endpoint>.openai.azure.com"
+$env:AZURE_API_KEY="<your-api-key>"
 ```
 
 **NOTE**: It is necessary to specify the model when using Azure Open AI with az aks agent by using the --model parameter.
