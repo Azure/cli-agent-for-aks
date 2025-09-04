@@ -213,6 +213,6 @@ If you run into any issues using the CLI Agent for AKS, verify the following:
   AZURE_API_KEY. The model can be used as a parameter.
 
 ### Errors
-- **Error: The combined size of system_prompt and user_prompt (6090 tokens) exceeds the maximum context size of 4096 tokens available for input. **
-  Increase the context size of the model that is deployed, this is configurable in the LLM provider
+- **Error: The combined size of system_prompt and user_prompt (6090 tokens) exceeds the maximum context size of 4096 tokens available for input**
+Increase the context size of the model that is deployed, this is configurable in the LLM provider
 
