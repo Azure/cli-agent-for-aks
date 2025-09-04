@@ -30,6 +30,8 @@ The output should show the cluster you intend to use.
 
 While you can use any model, we highly recommend you to use the newer models such as GPT-5, GPT-4.1 or Claude Sonnet 4.0. In our experience, they perform much better than other models. You will only need to have one LLM API key from the following options.
 
+NOTE: Please choose a model that has a high context size. At the very least, we recommend a context size of 128,000 tokens or higher.
+
 ### Azure OpenAI (Recommended)
 
 1. Set up an Azure Open AI resource by following the [Microsoft documentation](https://learn.microsoft.com/azure/ai-foundry/openai/how-to/create-resource?pivots=web-portal).
@@ -211,5 +213,6 @@ If you run into any issues using the CLI Agent for AKS, verify the following:
   AZURE_API_KEY. The model can be used as a parameter.
 
 ### Errors
-
+- **Error: The combined size of system_prompt and user_prompt (6090 tokens) exceeds the maximum context size of 4096 tokens available for input. **
+  Increase the context size of the model that is deployed, this is configurable in the LLM provider
 
