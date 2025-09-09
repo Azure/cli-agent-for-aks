@@ -35,8 +35,10 @@ NOTE: Please choose a model that has a high context size. At the very least, we 
 ### Azure OpenAI (Recommended)
 
 1. Set up an Azure Open AI resource by following the [Microsoft documentation](https://learn.microsoft.com/azure/ai-foundry/openai/how-to/create-resource?pivots=web-portal).
-**NOTE**: For the deployment name, please use the same name as the model name such as gpt-4o, gpt-5 depending on the access. You can use any region where you have access and quota for the model
-**NOTE**: In the deployment, please select as high token limit per minute (TPM) as possible. We recommend upwards of 1M TPM for good performance
+
+> [!NOTE]
+> For the deployment name, please use the same name as the model name such as gpt-4o, gpt-5 depending on the access. You can use any region where you have access and quota for the model
+> In the deployment, please select as high token limit per minute (TPM) as possible. We recommend upwards of 1M TPM for good performance
 2. [Deploy the model](https://learn.microsoft.com/azure/ai-foundry/openai/how-to/create-resource?pivots=web-portal#deploy-a-model) you plan to use in the Azure AI Foundry Portal.
 3. Once deployed, note your API base URL and API key, then set them as environment variables:
 <img width="1713" height="817" alt="image" src="https://github.com/user-attachments/assets/400021fd-5604-4cd2-9faf-407145c52669" />
