@@ -35,8 +35,9 @@ NOTE: Please choose a model that has a high context size. At the very least, we 
 ### Azure OpenAI (Recommended)
 
 1. Set up an Azure Open AI resource by following the [Microsoft documentation](https://learn.microsoft.com/azure/ai-foundry/openai/how-to/create-resource?pivots=web-portal).
-2. [Deploy the model](https://learn.microsoft.com/azure/ai-foundry/openai/how-to/create-resource?pivots=web-portal#deploy-a-model) you plan to use in the Azure AI Foundry Portal.
-3. Once deployed, note your API base URL and API key, then set them as environment variables:
+**NOTE**: For the deployment name, please use the same name as the model name such as gpt-4o, gpt-5
+3. [Deploy the model](https://learn.microsoft.com/azure/ai-foundry/openai/how-to/create-resource?pivots=web-portal#deploy-a-model) you plan to use in the Azure AI Foundry Portal.
+4. Once deployed, note your API base URL and API key, then set them as environment variables:
 <img width="1713" height="817" alt="image" src="https://github.com/user-attachments/assets/400021fd-5604-4cd2-9faf-407145c52669" />
 
 Linux/Mac:
@@ -211,8 +212,15 @@ If you run into any issues using the CLI Agent for AKS, verify the following:
 - If outputs vary, it may be due to LLM response variability or intermittent MCP server connections.
 - The Azure specific variables cannot be passed as parameters to the command, they explicitly need to be set as environment variables i.e  AZURE_API_BASE ,AZURE_API_VERSION
   AZURE_API_KEY. The model can be used as a parameter.
+- Ensure that the deployment name is same as the model name in the Azure Open AI deployments
 
 ### Errors
 - **Error: The combined size of system_prompt and user_prompt (6090 tokens) exceeds the maximum context size of 4096 tokens available for input**
 Increase the context size of the model that is deployed, this is configurable in the LLM provider
+- **Error: litellm.NotFoundError: AzureException NotFoundError - The API deployment for this resource does not exist. If you created the deployment within the last
+5 minutes, please wait a moment and try again **
+If you are using Azure Open AI, it is very likely that the deployment name is different from the model name. Please create a new deployment with the same name as the model name
+- **Couldn't find model's name azure/<> in litellm's model list, fallback to 128k tokens for max_input_tokens                                           
+Couldn't find model's name azure/<> in litellm's model list, fallback to 4096 tokens for max_output_tokens**
+This likely indicates the deployment name was included in the model parameter and is different from the model name. Please create a new deployment with the same name as the model name
 
