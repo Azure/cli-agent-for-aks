@@ -1,6 +1,6 @@
 # Instructions for CLI Agent for AKS
 
-For questions or issues, please document the commands and outputs and open an issue directly on this GitHub page. Feel free to upvote and create features that you would like to see.
+For questions or issues, please document the commands and outputs and **open an issue directly on this GitHub page**. Feel free to upvote and create features that you would like to see.
 
 ## Prerequisites
 
