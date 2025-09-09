@@ -1,8 +1,6 @@
 # Instructions for CLI Agent for AKS
 
-For questions or issues, please reach out to the team at aksagentcli@services.microsoft.com.
-
-To submit feedback, please fill out our [feedback form](aka.ms/aks/cli-agent/feedback).
+For questions or issues, please document the commands and outputs and open an issue directly on this GitHub page. Feel free to upvote and create features that you would like to see.
 
 ## Prerequisites
 
