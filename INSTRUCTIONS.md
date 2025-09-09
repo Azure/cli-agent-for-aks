@@ -2,6 +2,8 @@
 
 For questions or issues, please document the commands and outputs and **open an issue directly on this GitHub page**. Feel free to upvote and create features that you would like to see.
 
+You can also reach out directly to aksagentcli@service.microsoft.com with any feedback or questions.
+
 ## Prerequisites
 
 Before installing and using the CLI Agent, make sure you have the following configured:
