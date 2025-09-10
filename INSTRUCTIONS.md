@@ -224,7 +224,7 @@ If you run into any issues using the CLI Agent for AKS, verify the following:
 ### Errors
 - **Error: The combined size of system_prompt and user_prompt (6090 tokens) exceeds the maximum context size of 4096 tokens available for input**
 
-Increase the context size of the model that is deployed, this is configurable in the LLM provider. This error typically happens for GPT-4 which has a smaller context window
+This error typically happens for GPT-4 which has a smaller context window. Try using a different model.
 - **Error: litellm.NotFoundError: AzureException NotFoundError - The API deployment for this resource does not exist. If you created the deployment within the last
 5 minutes, please wait a moment and try again**
 
