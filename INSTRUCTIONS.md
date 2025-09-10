@@ -223,15 +223,19 @@ If you run into any issues using the CLI Agent for AKS, verify the following:
 
 ### Errors
 - **Error: The combined size of system_prompt and user_prompt (6090 tokens) exceeds the maximum context size of 4096 tokens available for input**
+
 Increase the context size of the model that is deployed, this is configurable in the LLM provider. This error typically happens for GPT-4 which has a smaller context window
 - **Error: litellm.NotFoundError: AzureException NotFoundError - The API deployment for this resource does not exist. If you created the deployment within the last
 5 minutes, please wait a moment and try again**
+
 If you are using Azure Open AI, it is very likely that the deployment name is different from the model name. Please create a new deployment with the same name as the model name
 - **Couldn't find model's name azure/<> in litellm's model list, fallback to 128k tokens for max_input_tokens                                           
 Couldn't find model's name azure/<> in litellm's model list, fallback to 4096 tokens for max_output_tokens**
+
 This likely indicates the deployment name was included in the model parameter and is different from the model name. Please create a new deployment with the same name as the model name
 - **Error: litellm.llms.azure.common_utils.AzureOpenAIError: Error code: 400 - {'error': {'message': "Unsupported value: 'temperature' does not support 1E-8 with this model. Only the default (1) value is supported.", 'type':                    
 'invalid_request_error', 'param': 'temperature', 'code': 'unsupported_value'}}**
+
 Create an environment variable `TEMPERATURE` and set it to 1
 ```bash
 export TEMPERATURE=1
