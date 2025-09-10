@@ -37,7 +37,7 @@ NOTE: Please choose a model that has a high context size. At the very least, we 
 1. Set up an Azure Open AI resource by following the [Microsoft documentation](https://learn.microsoft.com/azure/ai-foundry/openai/how-to/create-resource?pivots=web-portal).
 
 > [!NOTE]
-> For the deployment name, please use the same name as the model name such as gpt-4o, gpt-5 depending on the access. You can use any region where you have access and quota for the model
+> For the deployment name, please use the same name as the model name such as gpt-4o, gpt-4o-mini depending on the access. You can use any region where you have access and quota for the model
 > In the deployment, please select as high token limit per minute (TPM) as possible. We recommend upwards of 1M TPM for good performance
 2. [Deploy the model](https://learn.microsoft.com/azure/ai-foundry/openai/how-to/create-resource?pivots=web-portal#deploy-a-model) you plan to use in the Azure AI Foundry Portal.
 3. Once deployed, note your API base URL and API key, then set them as environment variables:
@@ -229,4 +229,10 @@ If you are using Azure Open AI, it is very likely that the deployment name is di
 - **Couldn't find model's name azure/<> in litellm's model list, fallback to 128k tokens for max_input_tokens                                           
 Couldn't find model's name azure/<> in litellm's model list, fallback to 4096 tokens for max_output_tokens**
 This likely indicates the deployment name was included in the model parameter and is different from the model name. Please create a new deployment with the same name as the model name
+- **Error: litellm.llms.azure.common_utils.AzureOpenAIError: Error code: 400 - {'error': {'message': "Unsupported value: 'temperature' does not support 1E-8 with this model. Only the default (1) value is supported.", 'type':                    
+'invalid_request_error', 'param': 'temperature', 'code': 'unsupported_value'}} **
+Create an environment variable `TEMPERATURE` and set it to 1
+```bash
+export TEMPERATURE=1
+```          
 
