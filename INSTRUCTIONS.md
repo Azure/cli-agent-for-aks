@@ -44,8 +44,9 @@ NOTE: Please choose a model that has a high context size. At the very least, we 
 <img width="1713" height="817" alt="image" src="https://github.com/user-attachments/assets/400021fd-5604-4cd2-9faf-407145c52669" />
 
 
-**NOTE**  The API version is not the model version, you can use any API version that is available and supported [here]([url](https://learn.microsoft.com/en-us/azure/ai-foundry/openai/api-version-lifecycle?))
-**NOTE**  The Azure API Base refers to the Azure Open AI end point, not the target URI of the deployment in Azure AI Foundry.
+> [!NOTE] 
+> The API version is not the model version, you can use any API version that is available and supported [here]([url](https://learn.microsoft.com/en-us/azure/ai-foundry/openai/api-version-lifecycle?))
+>  The Azure API Base refers to the Azure Open AI end point, not the target URI of the deployment in Azure AI Foundry.
 Linux/Mac:
 ```bash
 export AZURE_API_BASE="https://<your-endpoint>.openai.azure.com/"
