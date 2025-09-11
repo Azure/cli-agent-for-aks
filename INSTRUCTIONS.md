@@ -178,6 +178,20 @@ To opt-out of the default interactive mode and run the Agent CLI commands one-of
 az aks agent "How many pods are in the kube-system namespace" --model=azure/gpt-4o --no-interactive
 az aks agent "Why are the pods in Crashloopbackoff in the kube-system namespace" --model=azure/gpt-4o --no-interactive --show-tool-output
 ```
+
+### Config File 
+You can specify some of the common parameters in a config file rather than specifying it everytime. An [example config file](exampleconfig.yaml) is available in this repo. Right now, the following parameters are supported in the config file 
+
+- model
+- api key
+- custom toolsets
+- Azure environment variables (coming soon)
+
+```bash
+ az aks agent "Check kubernetes pod resource usage" --config-file exampleconfig.yaml
+```
+
+
  
 ### Parameters and Options
 | Argument | Description |
