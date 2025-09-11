@@ -234,6 +234,7 @@ If you run into any issues using the CLI Agent for AKS, verify the following:
 - The Azure specific variables cannot be passed as parameters to the command, they explicitly need to be set as environment variables i.e  AZURE_API_BASE ,AZURE_API_VERSION
   AZURE_API_KEY. The model can be used as a parameter.
 - Ensure that the deployment name is same as the model name in the Azure Open AI deployments
+- If the aks-agent installation is failing, please try to uninstall and reinstall the latest az cli
 
 ### Errors
 - **Error: The combined size of system_prompt and user_prompt (6090 tokens) exceeds the maximum context size of 4096 tokens available for input**
@@ -253,5 +254,7 @@ This likely indicates the deployment name was included in the model parameter an
 Create an environment variable `TEMPERATURE` and set it to 1
 ```bash
 export TEMPERATURE=1
-```          
+```
+- **ImportError: DLL load failed while importing win32file: The specified module could not be found**
+Please try reinstalling the azure cli client. One commonly seen issue  [here](https://github.com/azure/azure-cli/issues/32045)
 
