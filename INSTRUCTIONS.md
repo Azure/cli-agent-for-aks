@@ -132,6 +132,14 @@ You should see the command info and arguments listed.
 
 ## Usage
 
+
+> [!NOTE] 
+>The model for azure openai is the azure/<model-name> where model-name is the deployment name, and for llm provides other than openai, there are route in the model name, like azure/gpt-4.1 for azure openai, and "anthropic/claude-sonnet-4" for anthropic
+> The --model parameter determines which large language model (LLM) and provider will be used to analyze your cluster.
+> For OpenAI, use the model name directly (e.g., gpt-4o).
+> For Azure OpenAI, use `azure/<deployment name>` (e.g., azure/gpt-4.1).
+
+
 ### Basic Queries
 
 Try the following example prompts to test the agentic functionality:
