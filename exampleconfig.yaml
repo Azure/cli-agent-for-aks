@@ -1,6 +1,3 @@
-#model: "gpt-4o"
-#api_key: "..."
-
 #model: "azure/model-deployment-name"
 #api_key: "..."
 
