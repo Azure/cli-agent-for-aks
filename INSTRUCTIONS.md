@@ -273,6 +273,7 @@ export TEMPERATURE=1
 ```
 - **ImportError: DLL load failed while importing win32file: The specified module could not be found**
 Please try reinstalling the azure cli client. One commonly seen issue  [here](https://github.com/azure/azure-cli/issues/32045)
-- ** Error: litellm.AuthenticationError: AzureException AuthenticationError - Access denied due to invalid subscription key or wrong API endpoint. Make sure to provide a 
+- **Error: litellm.AuthenticationError: AzureException AuthenticationError - Access denied due to invalid subscription key or wrong API endpoint. Make sure to provide a 
 valid key for an active subscription and use a correct regional API endpoint for your resource**
+
 This is likely due to an issue with the variables setup for the Azure Open AI deployment. Please check the config file, your environment variables and the flags you pass while invoking the command. In case of conflict, the tool uses the flags first, the config file next and the environment variables as fall back.
