@@ -204,8 +204,11 @@ You can specify some of the common parameters in a config file rather than speci
  az aks agent "Check kubernetes pod resource usage" --config-file exampleconfig.yaml
 ```
 
-
- 
+### Uninstall the aks agent extension
+```bash
+az extension remove --name aks-agent --debug
+```
+ The extension should now disappear from the `aks version` output 
 ### Parameters and Options
 | Argument | Description |
 |--|--|
