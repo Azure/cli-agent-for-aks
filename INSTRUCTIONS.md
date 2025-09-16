@@ -107,8 +107,13 @@ Expected output should include: "azure-cli": "2.76.0" or higher
 #### Step 2 – Install the AKS-Agent Extension
 Add the aks-agent extension. This can take between **5-10** min
 
+
 ```bash
  az extension add --name aks-agent --debug
+```
+If you have the aks-agent update to the latest 
+```bash
+az extension update --name aks-agent --debug
 ```
 
 Verify the installation of the aks-agent extension through the az version command
