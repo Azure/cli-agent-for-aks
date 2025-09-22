@@ -204,6 +204,16 @@ You can specify some of the common parameters in a config file rather than speci
  az aks agent "Check kubernetes pod resource usage" --config-file exampleconfig.yaml
 ```
 
+
+### AKS MCP server integration
+The release (0.0.1b3) has an option to integrate with AKS MCP Server. In this mode, the AKS MCP server is run locally and the CLI agent uses the MCP server tools to drive all the insights rather than the default toolsets 
+
+To check the status of the MCP server,  you can use the --status
+
+```bash
+az aks-agent --status
+```
+
 ### Uninstall the aks agent extension
 ```bash
 az extension remove --name aks-agent --debug
