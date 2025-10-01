@@ -1,108 +1,45 @@
-# Transparency Note for CLI Agent for AKS
-
-This transparency note provides information about the capabilities, limitations, and responsible use of the CLI agent for Azure Kubernetes Service (AKS). Understanding these aspects helps you use the system effectively and responsibly.
 
 ## What is CLI Agent for AKS?
+The CLI Agent for AKS is an AI-powered command-line tool designed to help Azure Kubernetes Service (AKS) users troubleshoot cluster issues efficiently. It analyzes telemetry signals (logs, metrics, events), correlates them across infrastructure and workloads, and provides actionable insights. The agent takes natural language queries as input and returns diagnostic summaries, root cause analyses, and remediation suggestions. The CLI Agent does not include the AI models, users need to provide their own Large language models (LLMs) API keys for the agent to work. 
 
-The CLI Agent for AKS is an AI-powered command-line tool designed to help Azure Kubernetes Service (AKS) users troubleshoot cluster issues efficiently. It analyzes telemetry signals (logs, metrics, events), correlates them across infrastructure and workloads, and provides actionable insights. The agent takes natural language queries as input and returns diagnostic summaries, root cause analyses, and remediation suggestions. The CLI Agent does not include the AI models; users need to provide their own Large Language Model (LLM) API keys for the agent to work.
+## What can CLI Agent for AKS do?
+The CLI Agent for AKS is an AI-powered command-line interface designed to help users troubleshoot Azure Kubernetes Service (AKS) clusters more intelligently and efficiently. It acts as a local assistant that interprets natural language queries, executes diagnostic commands, and returns actionable insights. It integrates seamlessly with AKS-native tools and telemetry sources such as Kubernetes events, logs, inspector-gadget, Azure and AKS APIs, each of them enabled as toolsets natively in az aks agent.
+The agent respects Azure RBAC and identity controls as it inherits the users' permissions from Azure CLI, operating in read-only mode by default. Users can configure their AI provider (e.g., OpenAI, Azure OpenAI, Anthropic) and the model and can configure the agent to output the toolset outputs.
+The outputs of az aks agent include an AI-synthesized summary response to the user query, root cause analysis with supporting evidence (e.g., logs, metrics, events), remediation suggestions tailored to AKS best practice and the diagnostic traces and tool outputs (e.g., kubectl, az, tcpdump)
 
-## What Can CLI Agent for AKS Do?
+## What are CLI Agent for AKS’s intended uses?
+Agent CLI for AKS is meant to be used for human-in-the-loop interactions with user's AKS clusters to help them efficiently detect, diagnose and resolve issues in their AKS clusters. It is also intended to be used for read-only interactions with the kubernetes, and AKS APIs such as - getting resource information, understanding the health of the resources in the AKS clusters, and general Kubernetes and AKS best practices. The CLI agent for AKS is not meant to be used as a generic coding (ex: Github Copilot) or AI agent (ex: M365 Copilot, Chatgpt) beyond the scope of AKS interactions nor can it access internet to answer generic questions. While it is optimized for AKS-specific scenarios and integrates with tools like kubectl, Azure CLI, Inspektor Gadget, and Azure Monitor, it is not infallible. The agent may occasionally miss subtle signals, misinterpret noisy telemetry, or suggest mitigations that require human validation. For example, it might misattribute a DNS failure to a network policy when the root cause is a misconfigured upstream DNS server—especially if telemetry is incomplete or permissions are restricted. To avoid automation bias, users should treat the agent’s output as a helpful starting point—not a final verdict. It excels at surfacing likely causes and guiding investigation, but human oversight is essential, particularly in complex or high-stakes environments.
+As for AI models, we recommend that users use an Azure Open AI deployed, GPT4o or Gpto3 models, or directly from OpenAI API platform. However, users can use any Open API spec supported LLM model  provider such as Anthropic, Mistral etc.
 
-- Interprets natural language queries
-- Executes diagnostic commands
-- Returns actionable insights
-- Integrates with AKS-native tools and telemetry sources (Kubernetes events, logs, inspector-gadget, Azure and AKS APIs)
-- Respects Azure RBAC and identity controls (inherits permissions from Azure CLI, operates in read-only mode by default)
-- Allows configuration of AI provider (OpenAI, Azure OpenAI, Anthropic, etc.)
-- Outputs include: AI-synthesized summary, root cause analysis, remediation suggestions, diagnostic traces, and tool outputs (kubectl, az, tcpdump)
+## How was CLI Agent for AKS evaluated? What metrics are used to measure performance?
+The CLI Agent for AKS is being evaluated through a combination of internal testing and  programmatic evaluations (evals) designed to ensure its diagnostic capabilities are accurate, relevant, and impactful. For Programmatic evals, we measured standard responsible AI metrics such as Groundedness, UPIA and XPIA Jailbreak, and Harmful Content, Conversation Quality (coherence, fluency etc.).  Internal bug bashes  and red-teams are conducted to rigorously test the agent’s behavior across a variety of cases including but not limited to - common issues such as node health degradation, DNS failures, upgrade disruptions, and pod scheduling problems., helping the team identify gaps in reasoning, tooling integration, and prompt execution.  A core metric for success is the accuracy of the agent’s diagnosis and the relevance of its recommendations—whether it correctly identifies the root cause and suggests actionable, context-aware mitigations.  We realize the dynamic nature of agentic-AI interactions, and we welcome user feedback as part of the preview, users can share feedback directly with us at - aksagentcli@service.microsoft.com or create Github issues here. 
+## What are the limitations of [system or product name]? How can users minimize the impact of [system or product name]’s limitations when using the system?
+Limitations include:
+The CLI Agent for AKS, while powerful and purpose-built for diagnosing and resolving issues in Azure Kubernetes Service clusters, does have a few important limitations that users should be aware of to ensure effective and responsible use. First, the agent’s ability to access and analyze data is directly dependent on the user’s permissions and the availability of telemetry. If the user lacks sufficient access rights or if telemetry sources such as logs, metrics, or events are missing or incomplete, the agent may not be able to generate accurate or complete diagnostics. Second, the system is subject to token limits when processing large datasets such as time-series metrics which can constrain the depth or breadth of analysis in complex troubleshooting scenarios. Third, in its current MVP state, the CLI Agent offers limited support for managed Azure experiences, meaning that certain workflows (ex: Azure monitor Alerts integration) may not yet be fully supported.
+To minimize the impact of these limitations, users can take several proactive steps. Ensuring that required diagnostic tools—such as Azure Monitor are properly configured will help the agent access richer telemetry and perform more comprehensive diagnostics. Also, user can extend the capabilities of the CLI Agent by using it with Azure-mcp or AKS-mcp servers - learn more here <insert link Aritra Ghosh <aritraghosh@microsoft.com>>
+Lastly, since CLI Agent for AKS does not come with AI models included, using latest generation reasoning or general-purpose models such as gpt4o and gpto3 will ensure best possible outcomes. 
+What operational factors and settings allow for effective and responsible use of CLI Agent for AKS?
+To use the CLI Agent for AKS effectively and responsibly, several operational settings play a key role. The agent is designed to operate in read-only mode by default, which ensures safe diagnostics without making changes to the cluster. When write operations are needed—such as deploying debug pods or executing remediation steps—they require explicit user approval, maintaining user control and minimizing unintended impact. The agent runs locally on the user's machine and  also supports bring-your-own (BYO) AI providers, allowing users to configure their own LLM API keys (e.g., OpenAI, Azure OpenAI, Anthropic). This setup ensures that users can bring their organization's approved AI providers and endpoints, while all data processing happens locally, preserving data privacy and aligning with enterprise security standards.
+ Additionally, the agent offers configurable verbosity settings, enabling users to toggle between concise summaries and detailed diagnostic outputs depending on their needs. This flexibility supports both novice users seeking quick insights and advanced users who want full transparency into the agent’s reasoning and tool execution. Integration with Azure identity and RBAC further ensures that the agent only accesses resources the user is authorized to view, simplifying setup and enforcing secure access boundaries. Together, these settings create a secure, privacy-conscious, and user-controlled environment for troubleshooting AKS clusters with AI assistance.
+## How do I provide feedback on CLI Agent for AKS?
+Feedback can be provided via:
 
-## Intended Uses
+GitHub issues and PRs on the HolmesGPT repository.
+Internal channels during the private preview phase.
+Azure support tickets or direct engagement with the AKS product team 1.
 
-- Human-in-the-loop troubleshooting for AKS clusters
-- Read-only interactions with Kubernetes and AKS APIs
-- Resource information, health checks, and best practices for AKS
 
-**Not intended for:**
-- Generic coding or AI agent use beyond AKS scope
-- Internet access for generic questions
+If your system or product allows for plugins or extensibility:
+## What are plugins and how does CLI Agent for AKS use them?
+Plugins in the context of the CLI Agent for AKS are modular extensions that enhance the agent’s diagnostic capabilities by integrating external tools, data sources, and domain-specific logic into its troubleshooting workflows. These plugins allow the agent to go beyond static command execution and incorporate dynamic, scenario-aware reasoning. There are three primary types of plugins the agent supports:
 
-**Limitations:**
-- May miss subtle signals or misinterpret noisy telemetry
-- Requires human validation for suggested mitigations
-- Optimized for AKS-specific scenarios
+Custom Runbooks: These are predefined, scenario-specific workflows that guide the agent through structured troubleshooting steps. For example, a runbook for DNS failures might include checks for CoreDNS pod health, network policy misconfigurations, and upstream DNS resolution. These runbooks are invoked based on the user’s query and the agent’s interpretation of the issue, enabling consistent and repeatable diagnostics across clusters.
+Toolset Integrations: The agent can be extended with toolsets that connect to observability platforms like Prometheus, Datadog, and Azure Monitor. These toolsets expose metrics, logs, and alerts that the agent can query and analyze in real time. For instance, a Prometheus toolset might allow the agent to fetch CPU and memory usage trends for a failing pod, while an Azure Monitor integration could surface recent alerts or activity logs relevant to a node health issue.
+MCP Servers: Model Context Protocol (MCP) servers act as intermediaries that expose diagnostic tools and prompt templates to AI agents. In the CLI Agent for AKS, MCP servers provide structured access to Kubernetes and Azure resources, enabling the agent to execute commands like kubectl describe, az aks show, or even deploy debug pods. These servers also help standardize how tools are invoked and how data is returned, making it easier to scale the agent’s capabilities across environments.
+What data can CLI Agent for AKS provide to plugins? What permissions do plugins have?
+All the plugins are pull only, that is these are tools meant to allow the CLI Agent to pull date from various sources or leverage the custom runbooks that it embeds as part of the LLM prompts to improve its diagnostic capabilities. The only outward dataflow is to the AI models that the user connects to the CLI agent.
+## What kinds of issues may arise when using CLI Agent for AKS enabled with plugins?
+When using the CLI Agent for AKS with plugins, several types of issues may arise that can affect the reliability or accuracy of the troubleshooting experience. One common challenge is the incorrect invocation of tools due to misconfigured prompts. Since plugins often rely on prompt templates to guide the AI’s reasoning and tool selection, even small errors in prompt logic or structure can lead to the wrong tools being triggered or the right tools being used in the wrong context. This can result in misleading diagnostics or incomplete investigations. Another risk is the generation of fabricated or hallucinated outputs, especially when plugins return incomplete, outdated, or ambiguous data. In such cases, the AI may attempt to "fill in the gaps" with plausible-sounding but incorrect explanations. Additionally, errors can occur when telemetry is missing or when the plugin is used in a cluster configuration it doesn’t support—such as a private cluster without access to certain APIs or tools.
+To mitigate these risks, the CLI Agent includes several safeguards. Verbose logging and error reporting help users trace exactly what tools were invoked, what data was returned, and how the AI interpreted it—making it easier to spot and correct issues. Users can also manually override or disable specific plugins if they suspect they are causing problems or returning unreliable data. Finally, clear documentation and community support are essential for plugin development and maintenance. Well-documented plugins with examples, version compatibility notes, and known limitations help users understand how to use them responsibly and contribute improvements when needed. Using the latest generation LLM/reasoning models from leading AI providers also reduces the risk of hallucinations.
 
-## Responsible Use
 
-- Treat agent output as a starting point, not a final verdict
-- Human oversight is essential, especially in complex or high-stakes environments
-- Recommended AI models: Azure OpenAI (GPT-4o, GPT-3), OpenAI API, Anthropic, Mistral, etc.
-
-## Evaluation and Metrics
-
-- Internal testing and programmatic evaluations (evals)
-- Metrics: Groundedness, UPIA/XPIA Jailbreak, Harmful Content, Conversation Quality
-- Bug bashes and red-teaming for common issues (node health, DNS failures, upgrade disruptions, pod scheduling)
-- Core metric: accuracy of diagnosis and relevance of recommendations
-- User feedback welcomed via feedback form or GitHub issues
-
-## Limitations and Mitigation
-
-### Key Limitations
-- **Data access dependency:** Diagnostics depend on user permissions and telemetry availability
-- **Token limits:** Large datasets may constrain analysis
-- **Limited managed Azure experiences:** Some workflows (e.g., Azure Monitor Alerts) may not be fully supported
-- **AI-generated inaccuracies:** Insights are advisory; validate against actual cluster data
-
-### Minimizing Impact
-- Ensure diagnostic tools (e.g., Azure Monitor) are properly configured
-- Extend capabilities with Azure-mcp or AKS-mcp servers
-- Use latest generation reasoning models (GPT-4o, GPT-3, etc.)
-
-## Operational Factors for Responsible Use
-
-- Operates in read-only mode by default
-- Write operations require explicit user approval
-- Runs locally; supports bring-your-own (BYO) AI providers
-- All data processing happens locally for privacy and security
-- Configurable verbosity settings (concise summaries or detailed outputs)
-- Integrates with Azure identity and RBAC for secure access boundaries
-
-## Feedback Channels
-
-- GitHub issues and PRs on the HolmesGPT repository
-- Internal channels during private preview
-- Azure support tickets or direct engagement with AKS product team
-- Email: aksagentcli@service.microsoft.com
-
-## Plugins in CLI Agent for AKS
-
-Plugins are modular extensions that enhance diagnostic capabilities by integrating external tools, data sources, and domain-specific logic. Three primary types:
-
-### Custom Runbooks
-- Predefined, scenario-specific workflows for structured troubleshooting (e.g., DNS failures)
-
-### Toolset Integrations
-- Connect to observability platforms (Prometheus, Datadog, Azure Monitor)
-- Expose metrics, logs, and alerts for real-time analysis
-
-### MCP Servers
-- Model Context Protocol servers expose diagnostic tools and prompt templates
-- Enable commands like `kubectl describe`, `az aks show`, deploy debug pods
-- Standardize tool invocation and data return for scalability
-
-## Plugin Data and Permissions
-
-- Plugins are pull-only (no outward dataflow except to connected AI models)
-- Used to improve diagnostic capabilities via custom runbooks and tool integrations
-
-## Common Issues with Plugins
-
-- Incorrect tool invocation due to prompt logic errors
-- Fabricated outputs if plugins return incomplete or ambiguous data
-- Configuration errors (e.g., missing telemetry, unsupported cluster configurations)
-
-### Mitigation Strategies
-- Verbose logging and error reporting
-- Manual override/disable for problematic plugins
-- Clear documentation and community support
-- Use latest generation LLMs to reduce hallucinations
