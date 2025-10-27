@@ -40,53 +40,18 @@ NOTE: Please choose a model that has a high context size. At the very least, we 
 > For the deployment name, please use the same name as the model name such as gpt-4o, gpt-4o-mini depending on the access. You can use any region where you have access and quota for the model
 > In the deployment, please select as high token limit per minute (TPM) as possible. We recommend upwards of 1M TPM for good performance
 2. [Deploy the model](https://learn.microsoft.com/azure/ai-foundry/openai/how-to/create-resource?pivots=web-portal#deploy-a-model) you plan to use in the Azure AI Foundry Portal.
-3. Once deployed, note your API base URL and API key, then set them as environment variables:
+3. Once deployed, note your API base URL and API key, 
 <img width="1713" height="817" alt="image" src="https://github.com/user-attachments/assets/400021fd-5604-4cd2-9faf-407145c52669" />
 
 
 > [!NOTE] 
 > The API version is not the model version, you can use any API version that is available and supported [here]([url](https://learn.microsoft.com/en-us/azure/ai-foundry/openai/api-version-lifecycle?))
 >  The Azure API Base refers to the Azure Open AI end point, not the target URI of the deployment in Azure AI Foundry.
-Linux/Mac:
-```bash
-export AZURE_API_BASE="https://<your-endpoint>.openai.azure.com/"
-export AZURE_API_VERSION="2025-04-01-preview"
-export AZURE_API_KEY="<your-api-key>"
-```
 
-Windows:
-```bash
-$env:AZURE_API_VERSION="2025-04-01-preview"
-$env:AZURE_API_BASE="https://<your-endpoint>.openai.azure.com"
-$env:AZURE_API_KEY="<your-api-key>"
-```
 
 **NOTE**: It is necessary to specify the model when using Azure Open AI with az aks agent by using the --model parameter.
 
-### OpenAI
 
-If you have an OpenAI API key:
-
-```bash
-export OPENAI_API_KEY="<your-openai-api-key>"
-```
-
-### Anthropic
-
-```bash
-export ANTHROPIC_API_KEY="<your-anthropic-api-key>"
-```
-
-### Gemini
-
-```bash
-export GEMINI_API_KEY="<your-gemini-api-key>"
-```
-
-### Ollama
-
-```bash
-export OLLAMA_API_BASE="<your-ollama-api-key>"
 ```
 
 ### Other LLM providers
@@ -135,6 +100,37 @@ az aks agent --help
 
 You should see the command info and arguments listed.
 
+
+
+#### Step 4 - Initialize the Agent
+
+```bash
+az aks agent-init
+```
+Choose the relevant option and provide the details to save the LLM details for the agent
+```
+Welcome to AKS Agent LLM configuration setup. Type '/exit' to exit.
+ 1. azure
+ 2. openai
+ 3. anthropic
+ 4. gemini
+ 5. openai_compatible
+Enter the number of your LLM provider: 1
+You selected provider: azure
+Enter value for MODEL_NAME:  (Hint: should be consistent with your deployed name, e.g., gpt-4.1) gpt-4.1
+Enter your API key: 
+Enter value for AZURE_API_BASE:  (Hint: https://{your-custom-endpoint}.openai.azure.com/) https://test-example.openai.azure.com
+Enter value for AZURE_API_VERSION:  (Default: 2025-04-01-preview)
+LLM configuration setup successfully.
+```
+
+> [!NOTE] 
+>The API key will appear as empty as you type, make sure to use the right API key
+> You can also skip the init experience by providing the values in the config file - passed through --config file
+> If the LLM configuration fails, please double check your API key and or the AZURE_API_BASE
+
+
+
 ## Usage
 
 
@@ -143,6 +139,9 @@ You should see the command info and arguments listed.
 > The --model parameter determines which large language model (LLM) and provider will be used to analyze your cluster.
 > For OpenAI, use the model name directly (e.g., gpt-4o).
 > For Azure OpenAI, use `azure/<deployment name>` (e.g., azure/gpt-4.1).
+
+
+
 
 
 ### Basic Queries
