@@ -183,6 +183,75 @@ Using 37 datasources (toolsets). To refresh: use flag `--refresh-toolsets`
 
 Currently, we support adding the MCP server toolset through the config file.
 
+### AKS MCP Server Integration
+As an alternative to the default toolsets, you can also enable the AKS MCP server with the agentic CLI for AKS for a richer experience. This experience spins up the [AKS MCP server](https://github.com/Azure/aks-mcp)) locally and uses it as the source for telemetry
+```bash
+az aks agent "why is my node unhealthy" --model=azure/gpt-4o --aks-mcp 
+Loaded models: ['azure/gpt-4o']                                                                                           
+Refreshing available datasources (toolsets)                                                                               
+❌ Toolset slab: Environment variable SLAB_API_KEY was not set                                                            
+✅ Toolset kubernetes/kube-prometheus-stack                                                                               
+❌ Toolset argocd/core: Environment variable ARGOCD_AUTH_TOKEN was not set                                                
+❌ Toolset confluence: Environment variable CONFLUENCE_BASE_URL was not set                                               
+✅ Toolset core_investigation                                                                                             
+❌ Toolset robusta: Integration with Robusta cloud is disabled                                                            
+✅ Toolset internet                                                                                                       
+❌ Toolset opensearch/status: The toolset is missing its configuration                                                    
+❌ Toolset grafana/tempo: The toolset is missing its configuration                                                        
+❌ Toolset grafana/loki: Missing Loki configuration. Check your config.                                                   
+❌ Toolset newrelic: No configuration provided                                                                            
+❌ Toolset grafana/grafana: The toolset is missing its configuration                                                      
+❌ Toolset notion: Notion toolset is misconfigured. Authorization header is required.                                     
+❌ Toolset kafka/admin: The toolset is missing its configuration                                                          
+❌ Toolset datadog/logs: Missing config for dd_api_key, dd_app_key, or site_api_url. For details:                         
+https://holmesgpt.dev/data-sources/builtin-toolsets/datadog/                                                              
+❌ Toolset datadog/general: Missing config for dd_api_key, dd_app_key, or site_api_url. For details:                      
+https://holmesgpt.dev/data-sources/builtin-toolsets/datadog/                                                              
+❌ Toolset datadog/metrics: Missing config for dd_api_key, dd_app_key, or site_api_url. For details:                      
+https://holmesgpt.dev/data-sources/builtin-toolsets/datadog/                                                              
+❌ Toolset datadog/traces: No configuration provided for Datadog Traces toolset                                           
+✅ Toolset datadog/rds                                                                                                    
+❌ Toolset opensearch/logs: Missing OpenSearch configuration. Check your config.                                          
+❌ Toolset opensearch/traces: Missing opensearch traces URL. Check your config                                            
+❌ Toolset opensearch/query_assist: Environment variable OPENSEARCH_URL was not set                                       
+❌ Toolset coralogix/logs: The toolset is missing its configuration                                                       
+❌ Toolset rabbitmq/core: RabbitMQ toolset is misconfigured. 'management_url' is required.                                
+❌ Toolset git: Missing one or more required Git configuration values.                                                    
+❌ Toolset MongoDBAtlas: Missing config credentials.                                                                      
+✅ Toolset runbook                                                                                                        
+❌ Toolset azure/sql: The toolset is missing its configuration                                                            
+❌ Toolset ServiceNow: Missing config credentials.                                                                        
+❌ Toolset aws/security: `aws sts get-caller-identity` returned 127                                                       
+❌ Toolset aws/rds: `aws sts get-caller-identity` returned 127                                                            
+❌ Toolset docker/core: `docker version` returned 127                                                                     
+❌ Toolset cilium/core: `cilium status` returned 127                                                                      
+❌ Toolset hubble/observability: `hubble version` returned 127                                                            
+**✅ Toolset aks-mcp  **                                                                                                      
+❌ Toolset kubernetes/krew-extras: `kubectl version --client && kubectl lineage --version` returned 1                     
+✅ Toolset helm/core                                                                                                      
+Toolset statuses are cached to /Users/aritraghosh/.azure/toolsets_status.json                                             
+✅ Toolset kubernetes/kube-prometheus-stack                                                                               
+✅ Toolset internet                                                                                                       
+✅ Toolset core_investigation                                                                                             
+✅ Toolset datadog/rds                                                                                                    
+✅ Toolset runbook                                                                                                        
+✅ Toolset aks-mcp                                                                                                        
+✅ Toolset helm/core                                                                                                      
+NO ENABLED LOGGING TOOLSET                                                                                                
+Using model: azure/gpt-4o (128,000 total tokens, 16,384 output tokens)                                                    
+This tool uses AI to generate responses and may not always be accurate.
+Welcome to AKS AGENT: Type '/exit' to exit, '/help' for commands, '/feedback' to share your thoughts.
+User: why is my node unhealthy
+..
+```
+
+To check the status of the MCP server,  you can use the --status
+
+```bash
+az aks-agent --status
+```
+
+
 ### Skipping Interactive Mode: --no-interactive
 To opt-out of the default interactive mode and run the Agent CLI commands one-off, use the "--no-interactive" flag:
 
@@ -197,21 +266,14 @@ You can specify some of the common parameters in a config file rather than speci
 - model
 - api key
 - custom toolsets
-- Azure environment variables (coming soon)
+- Azure environment variables
 
 ```bash
  az aks agent "Check kubernetes pod resource usage" --config-file exampleconfig.yaml
 ```
 
 
-### AKS MCP server integration
-The release (0.0.1b3) has an option to integrate with AKS MCP Server. In this mode, the AKS MCP server is run locally and the CLI agent uses the MCP server tools to drive all the insights rather than the default toolsets 
 
-To check the status of the MCP server,  you can use the --status
-
-```bash
-az aks-agent --status
-```
 
 ### Uninstall the aks agent extension
 ```bash
@@ -231,6 +293,7 @@ az extension remove --name aks-agent --debug
 | --refresh-toolsets | Refresh the toolsets status. |
 | --resource-group, -g | Name of the resource group. |
 | --show-tool-output | Show the output of each tool that was called during the analysis. |
+| --aks-mcp | Enable AKS MCP integration for enhanced capability|
 
 The az aks agent has a set of subcommands which aid the troubleshooting experience. You can access them by typing `/` inside the interactive mode experience.
 
@@ -246,10 +309,11 @@ The az aks agent has a set of subcommands which aid the troubleshooting experien
 | /shell | Drop into interactive shell, then optionally share session with LLM |
 | /context | Show conversation context size and token count |
 | /show | Show specific tool output in scrollable view |
+| /feedback | Provide feedback on the agent's response |
 
 ## Troubleshooting
 
-If you run into any issues using the CLI Agent for AKS, verify the following:
+If you run into any issues using the agentic CLI For AKS, verify the following:
 
 - Make sure your API keys and environment variables are set correctly
 - Check if you are using the right model with --model (if needed - Azure OpenAI)
