@@ -344,6 +344,7 @@ Create an environment variable `TEMPERATURE` and set it to 1
 ```bash
 export TEMPERATURE=1
 ```
+This issue is fixed in the newer versions of the agent
 - **ImportError: DLL load failed while importing win32file: The specified module could not be found**
 Please try reinstalling the azure cli client. One commonly seen issue  [here](https://github.com/azure/azure-cli/issues/32045)
 - **Error: litellm.AuthenticationError: AzureException AuthenticationError - Access denied due to invalid subscription key or wrong API endpoint. Make sure to provide a 
