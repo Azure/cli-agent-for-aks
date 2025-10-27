@@ -1,4 +1,4 @@
-# Instructions for CLI Agent for AKS
+# Instructions for agentic CLI for AKS
 
 For questions or issues, please document the commands and outputs and **open an issue directly on this GitHub page**. Feel free to upvote and create features that you would like to see.
 
@@ -6,7 +6,7 @@ You can also reach out directly to aksagentcli@service.microsoft.com with any fe
 
 ## Prerequisites
 
-Before installing and using the CLI Agent, make sure you have the following configured:
+Before installing and using the agentic CLI for AKS, make sure you have the following configured:
 
 1. LLM Key
     - Preferred: Azure OpenAI
@@ -92,7 +92,7 @@ az version
 ```
 
 #### Step 3 – Verify Installation
-After installation, verify that the CLI Agent was successfully installed by running:
+After installation, verify that the agentic CLI for AKS was successfully installed by running:
 
 ```bash
 az aks agent --help
@@ -161,7 +161,7 @@ az aks agent “Why is my cluster is a failed state?” --model=azure/gpt-4o
 By default, the experience uses interactive mode where you can continue asking questions with retained context until you want to exit. To quit the experience, type “/exit”.
 
 ### Toolsets
-The CLI Agent for AKS includes pre-built integrations for popular monitoring and observability tools through toolsets. Some work automatically with Kubernetes, while others require API keys or configuration.
+The agentic CLI for AKS includes pre-built integrations for popular monitoring and observability tools through toolsets. Some work automatically with Kubernetes, while others require API keys or configuration.
 
 For AKS, there are specific toolsets which help with the troubleshooting experience. These toolsets appear in the output at the start of the experience:
 
