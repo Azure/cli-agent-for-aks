@@ -12,6 +12,26 @@ Do not share screenshots or copy-paste the instructions in the subpage above. If
 
 ## Feedback Channels
 
+
+**Feedback experience in CLI**
+The easiest way to provide feedback is directly using the '/feedback' inside the agentic CLI experience
+
+```bash
+User: /feedback
+Privacy Notice: When you send Microsoft this feedback, you agree we may combine this information, which might include 
+other diagnostic data, to help improve Microsoft products and services. Processing of feedback data is governed by the 
+Microsoft Products and Services Data Protection Addendum between your organization and Microsoft, and the feedback you 
+submit is considered Personal Data under that addendum. Privacy Statement: https://go.microsoft.com/fwlink/?LinkId=521839
+💡 Tip: Press Ctrl+C at any time to cancel feedback
+Was this response useful to you? 👍(y)/👎(n): y
+Do you want to provide any additional comments for feedback? (press Enter to skip):
+This helped me fix my node health issue
+✓ Feedback recorded (rating=👍, "This helped me fix my node health issue")
+ 
+Do you want to submit this feedback? (Y/n):
+```
+
+
 **Weekly Community Call with AKS**
 
 The AKS product team welcomes you to join our weekly community calls for open discussion, questions, or feedback on the agentic CLI for AKS experience. We would love to hear about your experiences with the feature and what gaps or issues you have come across. Your feedback is valuable for our team to continuously improve and expand the agentic CLI experience before we officially announce it to the community!
