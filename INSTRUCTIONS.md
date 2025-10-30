@@ -52,7 +52,6 @@ NOTE: Please choose a model that has a high context size. At the very least, we 
 **NOTE**: It is necessary to specify the model when using Azure Open AI with az aks agent by using the --model parameter.
 
 
-```
 
 ### Other LLM providers
 We also support any OpenAI compatible model, please reach out to us for support.
