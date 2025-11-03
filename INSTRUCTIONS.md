@@ -264,10 +264,10 @@ az aks agent "Why are the pods in Crashloopbackoff in the kube-system namespace"
 ```
 
 ### Config File 
-You can specify some of the common parameters in a config file rather than specifying it everytime. An [example config file](exampleconfig.yaml) is available in this repo. Right now, the following parameters are supported in the config file 
+You can specify some of the common parameters in a config file over the init experience. An [example config file](exampleconfig.yaml) is available in this repo. Right now, the following parameters are supported in the config file 
 
 - model
-- api key
+- Api key
 - custom toolsets
 - Azure environment variables
 
