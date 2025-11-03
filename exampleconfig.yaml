@@ -1,6 +1,15 @@
 #model: "azure/model-deployment-name"
 #api_key: "..."
 
+#llms:
+# - provider: azure
+#  MODEL_NAME: gpt-4o
+#  AZURE_API_KEY: *api-key-without-quotes*
+#  AZURE_API_BASE: https://testapiazure.openai.azure.com/
+# AZURE_API_VERSION: 2025-04-01-preview
+
+
+
 # try adding your own tools here!
 # e.g. query company-specific data, fetch logs from your existing observability tools, etc
 #custom_toolsets: ["examples/custom_toolset.yaml"]
