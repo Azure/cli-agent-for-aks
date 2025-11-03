@@ -46,7 +46,7 @@ NOTE: Please choose a model that has a high context size. At the very least, we 
 
 > [!NOTE] 
 > The API version is not the model version, you can use any API version that is available and supported [here]([url](https://learn.microsoft.com/en-us/azure/ai-foundry/openai/api-version-lifecycle?))
->  The Azure API Base refers to the Azure Open AI end point, not the target URI of the deployment in Azure AI Foundry.
+>  The Azure API Base refers to the Azure Open AI end point (which usually ends in openai.azure.com/), not the target URI of the deployment in Azure AI Foundry.
 
 
 **NOTE**: It is necessary to specify the model when using Azure Open AI with az aks agent by using the --model parameter.
@@ -126,6 +126,7 @@ LLM configuration setup successfully.
 > [!NOTE] 
 >The API key will appear as empty as you type, make sure to use the right API key
 > You can also skip the init experience by providing the values in the config file - passed through --config file
+> The Azure API Base refers to the Azure Open AI end point (which usually ends in openai.azure.com/), not the target URI of the deployment in Azure AI Foundry.
 > If the LLM configuration fails, please double check your API key and or the AZURE_API_BASE
 
 
@@ -185,7 +186,7 @@ Currently, we support adding the MCP server toolset through the config file.
 ### AKS MCP Server Integration
 As an alternative to the default toolsets, you can also enable the AKS MCP server with the agentic CLI for AKS for a richer experience. This experience spins up the [AKS MCP server](https://github.com/Azure/aks-mcp)) locally and uses it as the source for telemetry
 ```bash
-az aks agent "why is my node unhealthy" --model=azure/gpt-4o --aks-mcp 
+az aks agent "why is my node unhealthy" --model=azure/gpt-4o --aks-mcp  -n mcp-server-test-cluster -g resource-group-cluster 
 Loaded models: ['azure/gpt-4o']                                                                                           
 Refreshing available datasources (toolsets)                                                                               
 ❌ Toolset slab: Environment variable SLAB_API_KEY was not set                                                            
@@ -243,6 +244,10 @@ Welcome to AKS AGENT: Type '/exit' to exit, '/help' for commands, '/feedback' to
 User: why is my node unhealthy
 ..
 ```
+> [!NOTE] 
+> In the MCP server integration,  please provide the name of the cluster(-n) and the resource group(-g) at the start of the agetne experience. Unlike the regular mode, where the cluster contextis picked up automatically, the MCP server integration currently doesnt support it. This limitation will be fixed in the future.
+
+
 
 To check the status of the MCP server,  you can use the --status
 
