@@ -181,7 +181,6 @@ az aks agent --model=azure/gpt-4o "How many pods are in the kube-system namespac
 Using 37 datasources (toolsets). To refresh: use flag `--refresh-toolsets`  
 ```
 
-Currently, we support adding the MCP server toolset through the config file.
 
 ### AKS MCP Server Integration
 As an alternative to the default toolsets, you can also enable the AKS MCP server with the agentic CLI for AKS for a richer experience. This experience spins up the [AKS MCP server](https://github.com/Azure/aks-mcp)) locally and uses it as the source for telemetry
